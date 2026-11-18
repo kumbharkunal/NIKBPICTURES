@@ -14,7 +14,7 @@ export function Testimonials() {
         href={trust.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex min-h-11 items-center gap-2 font-medium text-sindoor"
+        className="inline-flex min-h-11 items-center gap-2 font-medium text-gold-deep"
       >
         <span className="link-draw">{testimonials.readAll(trust.platform)}</span>
         <ArrowUpRight weight="light" aria-hidden="true" className="size-4" />

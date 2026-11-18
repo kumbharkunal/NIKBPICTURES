@@ -103,7 +103,7 @@ function StackCard({ item, index, depth, total, flight, label, onSwipe, onLanded
     >
       <m.div style={{ rotate: tilt }} className="h-full rounded-card bg-paper p-1.5 shadow-card ring-1 ring-line">
         <figure className="flex h-full flex-col rounded-card-inner bg-ivory px-6 pt-8 pb-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.6)] sm:px-10 sm:pt-11 sm:pb-9 lg:px-14 lg:pt-14 lg:pb-12">
-          <span aria-hidden="true" className="h-8 font-display text-[6rem] leading-[0.8] font-light text-sindoor sm:h-10 sm:text-[7rem]">
+          <span aria-hidden="true" className="h-8 font-display text-[6rem] leading-[0.8] font-light text-gold sm:h-10 sm:text-[7rem]">
             “
           </span>
           <blockquote className="mt-5 max-w-[24ch] font-display text-[clamp(1.4rem,0.95rem+1.7vw,2.6rem)] leading-tight font-light tracking-[-0.015em] text-ink">

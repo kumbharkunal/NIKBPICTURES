@@ -50,7 +50,7 @@ function measureThread(track: HTMLElement, numerals: HTMLElement[]): Thread {
 }
 
 /**
- * How we work choreography. The brass thread (pathLength 1, so resizing never breaks the dash) is
+ * How we work choreography. The gold thread (pathLength 1, so resizing never breaks the dash) is
  * drawn by scroll; each outlined numeral floods with ink as the thread reaches it, and empties
  * again if you scroll back above it. The thread is re-measured whenever the track or a numeral
  * changes size (fonts loading, resizes). Reduced motion: thread drawn, numerals filled.

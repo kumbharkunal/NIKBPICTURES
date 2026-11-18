@@ -37,7 +37,7 @@ export function BookingCta() {
 
       <div className="container-page section-y grid gap-y-14 lg:grid-cols-12 lg:gap-x-6">
         <div className="lg:col-span-5 lg:pt-6">
-          <p data-reveal="up" lang="mr" className="text-[clamp(1.25rem,1.1rem+0.5vw,1.5rem)] leading-snug text-sindoor">
+          <p data-reveal="up" lang="mr" className="text-[clamp(1.25rem,1.1rem+0.5vw,1.5rem)] leading-snug text-gold-deep">
             {booking.eyebrow}
           </p>
           <SplitHeading id="book-title" className="mt-5 font-display text-display font-light">

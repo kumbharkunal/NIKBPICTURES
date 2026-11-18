@@ -2,22 +2,25 @@
 
 /*
   Nik B Pictures design tokens. "Timeless frames, in cream and ink."
-  Light theme only. The single accent is sindoor (the darkroom safelight, the colour of kumkum).
-  Brass is for hairlines, crop marks and ornaments, never for text.
+  Taken from the studio's logo: a cream disc, black lettering and a thin gold ring. Ink carries
+  every action; gold is for hairlines, crop marks and ornaments (gold-deep is its text-safe tone).
+  Noir is the cinema black for the Stories band and the footer (.theme-noir).
   Keep src/lib/tokens.ts in sync for places that cannot read CSS (metadata, OG image, icons).
 */
 @theme {
   --color-*: initial;
-  --color-paper: #f4ede1;
-  --color-paper-deep: #ebe2d3;
-  --color-ivory: #fbf8f2;
-  --color-ink: #1e1a16;
-  --color-ink-soft: #5e554b;
-  --color-sindoor: #9c3b2a;
-  --color-sindoor-deep: #7f2e21;
-  --color-brass: #b08d57;
-  --color-line: rgb(30 26 22 / 0.12);
-  --color-line-strong: rgb(30 26 22 / 0.55);
+  --color-paper: #f2ece4;
+  --color-paper-deep: #e8e0d5;
+  --color-ivory: #faf7f2;
+  --color-ink: #16140f;
+  --color-ink-soft: #5b554c;
+  --color-ink-lift: #2c2721;
+  --color-gold: #b39565;
+  --color-gold-deep: #7a5e36;
+  --color-error: #8e2a1e;
+  --color-noir: #0f0e0b;
+  --color-line: rgb(22 20 15 / 0.12);
+  --color-line-strong: rgb(22 20 15 / 0.55);
   --color-transparent: transparent;
   --color-current: currentColor;
 
@@ -69,10 +72,10 @@
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-exit: cubic-bezier(0.5, 0, 0.75, 0);
 
-  --shadow-glass: 0 8px 32px rgb(30 26 22 / 0.08);
-  --shadow-card: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 18px 48px -28px rgb(30 26 22 / 0.28);
-  --shadow-fab: 0 10px 30px -10px rgb(30 26 22 / 0.45);
-  --shadow-pop: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 24px 56px -20px rgb(30 26 22 / 0.3), 0 4px 14px -6px rgb(30 26 22 / 0.12);
+  --shadow-glass: 0 8px 32px rgb(22 20 15 / 0.08);
+  --shadow-card: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 18px 48px -28px rgb(22 20 15 / 0.28);
+  --shadow-fab: 0 10px 30px -10px rgb(22 20 15 / 0.45);
+  --shadow-pop: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 24px 56px -20px rgb(22 20 15 / 0.3), 0 4px 14px -6px rgb(22 20 15 / 0.12);
 }
 
 @theme inline {
@@ -83,12 +86,12 @@
 }
 
 :root {
-  --paper-rgb: 244 237 225;
-  --paper-deep-rgb: 235 226 211;
-  --ivory-rgb: 251 248 242;
-  --ink-rgb: 30 26 22;
-  --sindoor-rgb: 156 59 42;
-  --brass-rgb: 176 141 87;
+  --paper-rgb: 242 236 228;
+  --paper-deep-rgb: 232 224 213;
+  --ivory-rgb: 250 247 242;
+  --ink-rgb: 22 20 15;
+  --gold-rgb: 179 149 101;
+  --noir-rgb: 15 14 11;
 
   --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
   --section-y: clamp(6rem, 3rem + 9vw, 12rem);
@@ -143,14 +146,14 @@
   }
 
   ::selection {
-    background-color: rgb(var(--sindoor-rgb) / 0.2);
+    background-color: rgb(var(--gold-rgb) / 0.3);
     color: var(--color-ink);
   }
 
   /* Scrollbars on mouse and trackpad devices. The page's own is replaced by ScrollRail, so the
      browser's is hidden from the first paint (the head script sets .js before it); without
      JavaScript the native one stays. Inner scroll areas keep a native bar in the site's colours:
-     a slim taupe pill on a paper track behind a hairline, darker on hover, sindoor while dragged
+     a slim taupe pill on a paper track behind a hairline, darker on hover, gold while dragged
      (3:1 against the track at rest). Touch devices keep their native overlay scrollbars. */
   @media (hover: hover) and (pointer: fine) {
     html.js {
@@ -193,7 +196,7 @@
     }
 
     ::-webkit-scrollbar-thumb:active {
-      background-color: var(--color-sindoor);
+      background-color: var(--color-gold);
     }
 
     ::-webkit-scrollbar-corner {
@@ -307,7 +310,7 @@ html:not(.deva-ready) {
 
   .skip-link:focus-visible {
     translate: -50% 0;
-    outline-color: var(--color-sindoor);
+    outline-color: var(--color-gold);
   }
 
   /* Glass pill: a constant blur layer plus two tint layers that cross-fade by tone.
@@ -503,7 +506,7 @@ html:not(.deva-ready) {
     margin-block: -0.08em -0.18em;
   }
 
-  /* Thin brass crop marks at the corners of a frame. */
+  /* Thin gold crop marks at the corners of a frame. */
   .crop-marks {
     position: absolute;
     inset: 0;
@@ -514,7 +517,7 @@ html:not(.deva-ready) {
     position: absolute;
     width: 1.25rem;
     height: 1.25rem;
-    border-color: var(--crop-color, var(--color-brass));
+    border-color: var(--crop-color, var(--color-gold));
     border-style: solid;
     border-width: 0;
   }
@@ -601,7 +604,7 @@ html:not(.deva-ready) {
     display: block;
     width: 160px;
     height: 1px;
-    background-color: var(--color-brass);
+    background-color: var(--color-gold);
     transform: scaleX(0);
     transform-origin: left center;
   }
@@ -901,13 +904,13 @@ html:not(.deva-ready) {
     position: relative;
     flex: 1;
     height: 1px;
-    background-color: rgb(var(--brass-rgb) / 0.3);
+    background-color: rgb(var(--gold-rgb) / 0.3);
   }
 
   .stories-progress-line {
     position: absolute;
     inset: 0;
-    background-color: var(--color-brass);
+    background-color: var(--color-gold);
     transform: scaleX(0);
     transform-origin: left center;
   }
@@ -1034,7 +1037,7 @@ html:not(.deva-ready) {
 
   .service-row:hover .service-title,
   .service-row:focus-visible .service-title {
-    color: var(--color-sindoor);
+    color: var(--color-gold-deep);
     transform: translateX(1.5rem);
   }
 
@@ -1052,7 +1055,7 @@ html:not(.deva-ready) {
   .service-arrow-fill {
     position: absolute;
     inset: 0;
-    background-color: var(--color-sindoor);
+    background-color: var(--color-ink);
     clip-path: circle(0% at 50% 50%);
     transition: clip-path 500ms var(--ease-cinematic);
   }
@@ -1102,7 +1105,7 @@ html:not(.deva-ready) {
     }
   }
 
-  /* How we work: outlined numerals that flood with ink, strung on a brass thread. Small screens
+  /* How we work: outlined numerals that flood with ink, strung on a gold thread. Small screens
      get a vertical list with the thread down the left edge; large screens a four-step staircase. */
   .process-track {
     position: relative;
@@ -1124,11 +1127,11 @@ html:not(.deva-ready) {
   }
 
   .process-thread-track {
-    stroke: rgb(var(--brass-rgb) / 0.3);
+    stroke: rgb(var(--gold-rgb) / 0.3);
   }
 
   .process-thread-line {
-    stroke: var(--color-brass);
+    stroke: var(--color-gold);
   }
 
   .process-steps {
@@ -1253,14 +1256,14 @@ html:not(.deva-ready) {
   }
 
   .field[aria-invalid="true"] {
-    border-color: var(--color-sindoor-deep);
-    box-shadow: inset 0 0 0 1px var(--color-sindoor-deep);
+    border-color: var(--color-error);
+    box-shadow: inset 0 0 0 1px var(--color-error);
   }
 
-  /* The page scrollbar on mouse and trackpad devices (ScrollRail): a brass hairline along the right
+  /* The page scrollbar on mouse and trackpad devices (ScrollRail): a gold hairline along the right
      edge, like a film strip's edge, and an ink pill with an ivory ring so it reads over photographs
      as well as paper. It brightens while the page moves; on hover the pill widens and darkens;
-     dragged, it turns sindoor. The 16px rail is the hit area. */
+     dragged, it turns gold. The 16px rail is the hit area. */
   .scroll-rail {
     position: fixed;
     top: 0;
@@ -1285,7 +1288,7 @@ html:not(.deva-ready) {
     left: 50%;
     width: 1px;
     margin-left: -0.5px;
-    background-color: var(--color-brass);
+    background-color: var(--color-gold);
     opacity: 0.35;
     transition: opacity 400ms var(--ease-ui);
   }
@@ -1336,7 +1339,7 @@ html:not(.deva-ready) {
   }
 
   .scroll-rail[data-dragging] .scroll-rail__pill {
-    background-color: var(--color-sindoor);
+    background-color: var(--color-gold);
   }
 
   /* Wedding date: a button styled as a field; it opens the site's own calendar. */
@@ -1380,8 +1383,8 @@ html:not(.deva-ready) {
 
   .date-trigger:hover .date-trigger__icon,
   .date-trigger[aria-expanded="true"] .date-trigger__icon {
-    background-color: rgb(var(--sindoor-rgb) / 0.1);
-    color: var(--color-sindoor);
+    background-color: rgb(var(--ink-rgb) / 0.08);
+    color: var(--color-ink);
   }
 
   /* The calendar (a native modal dialog). The dialog is a transparent full-screen layer holding a
@@ -1593,7 +1596,7 @@ html:not(.deva-ready) {
     cursor: default;
   }
 
-  /* Today: a sindoor dot under the number. */
+  /* Today: a gold dot under the number. */
   .date-day[aria-current="date"]::after,
   .date-month[data-current]::after {
     content: "";
@@ -1604,7 +1607,7 @@ html:not(.deva-ready) {
     height: 0.25rem;
     margin-left: -0.125rem;
     border-radius: var(--radius-pill);
-    background-color: var(--color-sindoor);
+    background-color: var(--color-gold);
   }
 
   .date-day[data-selected],
@@ -1613,7 +1616,7 @@ html:not(.deva-ready) {
   }
 
   .date-month[data-selected] {
-    background-color: var(--color-sindoor);
+    background-color: var(--color-ink);
   }
 
   .date-day[data-selected]::after,
@@ -1626,8 +1629,8 @@ html:not(.deva-ready) {
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background-color: var(--color-sindoor);
-    box-shadow: 0 8px 18px -10px rgb(var(--sindoor-rgb) / 0.9);
+    background-color: var(--color-ink);
+    box-shadow: 0 8px 18px -10px rgb(var(--ink-rgb) / 0.5);
   }
 
   .date-months {
@@ -1697,9 +1700,9 @@ html:not(.deva-ready) {
   }
 
   .chip-input:checked + .chip {
-    border-color: var(--color-sindoor);
-    background-color: rgb(var(--sindoor-rgb) / 0.08);
-    color: var(--color-sindoor-deep);
+    border-color: var(--color-ink);
+    background-color: var(--color-ink);
+    color: var(--color-ivory);
   }
 
   .chip-input:checked + .chip .chip-plus {

@@ -4,17 +4,19 @@
  * Keep both in sync.
  */
 export const palette = {
-  paper: "#F4EDE1",
-  paperDeep: "#EBE2D3",
-  ivory: "#FBF8F2",
-  ink: "#1E1A16",
-  inkSoft: "#5E554B",
-  sindoor: "#9C3B2A",
-  sindoorDeep: "#7F2E21",
-  brass: "#B08D57",
+  paper: "#F2ECE4",
+  paperDeep: "#E8E0D5",
+  ivory: "#FAF7F2",
+  ink: "#16140F",
+  inkSoft: "#5B554C",
+  inkLift: "#2C2721",
+  gold: "#B39565",
+  goldDeep: "#7A5E36",
+  error: "#8E2A1E",
+  noir: "#0F0E0B",
 } as const;
 
-/** "#B08D57" + 0.5 becomes "rgba(176, 141, 87, 0.5)", for canvas drawing. */
+/** "#B39565" + 0.5 becomes "rgba(179, 149, 101, 0.5)", for canvas drawing. */
 export function withAlpha(hex: string, alpha: number): string {
   const value = hex.replace("#", "");
   const red = Number.parseInt(value.slice(0, 2), 16);

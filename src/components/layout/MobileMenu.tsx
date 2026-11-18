@@ -245,14 +245,14 @@ export function MobileMenu({ toggleRef, socialIcons, ctaIcon, active }: MobileMe
                 >
                   <m.span
                     variants={indexVariants}
-                    className={cx("w-6 font-mono text-caption", active === link.id ? "text-sindoor" : "text-ink-soft")}
+                    className={cx("w-6 font-mono text-caption", active === link.id ? "text-gold-deep" : "text-ink-soft")}
                   >
                     {pad2(index + 1)}
                   </m.span>
                   <span className="block overflow-hidden pb-[0.12em]">
                     <m.span
                       variants={linkVariants}
-                      className="block font-display text-[clamp(2.5rem,11vw,3.5rem)] leading-[1.02] font-light tracking-tight transition-colors duration-200 group-hover:text-sindoor"
+                      className="block font-display text-[clamp(2.5rem,11vw,3.5rem)] leading-[1.02] font-light tracking-tight transition-colors duration-200 group-hover:text-gold-deep"
                     >
                       {link.label}
                     </m.span>

@@ -10,7 +10,7 @@ function Row() {
           <span className="font-display text-[clamp(2.25rem,1rem+4.5vw,5.5rem)] leading-[1.15] font-light whitespace-nowrap italic">
             {item}
           </span>
-          <Aperture data-marquee-glyph weight="light" className="size-[0.5em] shrink-0 text-brass text-[clamp(2.25rem,1rem+4.5vw,5.5rem)]" aria-hidden="true" />
+          <Aperture data-marquee-glyph weight="light" className="size-[0.5em] shrink-0 text-gold text-[clamp(2.25rem,1rem+4.5vw,5.5rem)]" aria-hidden="true" />
         </span>
       ))}
     </div>
@@ -23,7 +23,7 @@ function Row() {
  */
 export function Marquee() {
   return (
-    <div aria-hidden="true" className="marquee relative overflow-hidden border-y border-brass/40 py-[clamp(1.25rem,2.5vw,2.25rem)]">
+    <div aria-hidden="true" className="marquee relative overflow-hidden border-y border-gold/40 py-[clamp(1.25rem,2.5vw,2.25rem)]">
       <MarqueeMotion>
         <div data-marquee-track className="flex w-max will-change-transform">
           <Row />

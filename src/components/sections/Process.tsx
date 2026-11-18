@@ -9,7 +9,7 @@ import { ProcessMotion } from "./ProcessMotion";
 
 /**
  * How we work. Four real steps, so they are numbered. Large screens: a staircase of outlined
- * numerals joined by a brass thread, with the rings as a small framed accent above the last step.
+ * numerals joined by a gold thread, with the rings as a small framed accent above the last step.
  * Small screens: a vertical list with the thread down the left edge. The list order carries the
  * sequence for screen readers; the numerals are decorative.
  */

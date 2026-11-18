@@ -12,7 +12,7 @@ export function fieldDescribedBy(id: string, helper?: string, error?: string): s
 export function FieldNotes({ id, helper, error }: { id: string; helper?: string; error?: string }) {
   if (error) {
     return (
-      <p id={`${id}-error`} className="mt-2 flex items-start gap-1.5 text-sm text-sindoor-deep">
+      <p id={`${id}-error`} className="mt-2 flex items-start gap-1.5 text-sm text-error">
         <WarningCircle weight="regular" aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
         {error}
       </p>

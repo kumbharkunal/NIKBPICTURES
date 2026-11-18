@@ -79,7 +79,7 @@ export default async function OpenGraphImage() {
   const onPhoto = photo !== null;
   const text = onPhoto ? palette.ivory : palette.ink;
   const soft = onPhoto ? withAlpha(palette.ivory, 0.86) : palette.inkSoft;
-  const mark = onPhoto ? withAlpha(palette.ivory, 0.75) : palette.brass;
+  const mark = onPhoto ? withAlpha(palette.ivory, 0.75) : palette.gold;
 
   const card = new ImageResponse(
     (
@@ -134,7 +134,7 @@ export default async function OpenGraphImage() {
               right: 18,
               bottom: 18,
               left: 18,
-              border: `1px solid ${withAlpha(palette.brass, 0.55)}`,
+              border: `1px solid ${withAlpha(palette.gold, 0.55)}`,
             }}
           />
         )}
@@ -191,7 +191,7 @@ export default async function OpenGraphImage() {
                     key={runIndex}
                     style={
                       run.italic
-                        ? { fontStyle: "italic", color: onPhoto ? text : palette.sindoor }
+                        ? { fontStyle: "italic", color: onPhoto ? text : palette.goldDeep }
                         : undefined
                     }
                   >

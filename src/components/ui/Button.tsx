@@ -33,7 +33,7 @@ const base =
   "focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-45 select-none";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-sindoor text-ivory hover:bg-sindoor-deep",
+  primary: "bg-ink text-ivory hover:bg-ink-lift",
   ghost: "border border-line-strong text-ink hover:border-ink hover:bg-ink/5",
   "ghost-dark": "border border-ivory/40 bg-ink/60 text-ivory hover:bg-ink/75",
 };

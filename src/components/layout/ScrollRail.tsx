@@ -13,7 +13,7 @@ const IDLE_MS = 1200;
 
 /**
  * The site's own scrollbar on mouse and trackpad devices (the browser's is hidden from the first
- * paint): a brass hairline along the right edge with an ink pill that follows the scroll. Drag the
+ * paint): a gold hairline along the right edge with an ink pill that follows the scroll. Drag the
  * pill, or press the rail to glide there. Touch devices keep their native overlay scrollbars.
  * Hidden from assistive technology, like a native scrollbar; the keyboard scrolls the page as usual.
  */

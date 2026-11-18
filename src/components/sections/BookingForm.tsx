@@ -314,7 +314,7 @@ export function BookingForm({ submitIcon }: { submitIcon: ReactNode }) {
                     href={fallbackUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-sindoor underline underline-offset-4"
+                    className="font-medium text-ink underline underline-offset-4"
                   >
                     {booking.openLink}
                   </a>

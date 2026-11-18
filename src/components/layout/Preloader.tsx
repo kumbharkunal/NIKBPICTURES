@@ -23,7 +23,7 @@ interface Iris {
 }
 
 /**
- * First-visit intro: the wordmark rises from a mask while a brass hairline fills with real progress
+ * First-visit intro: the wordmark rises from a mask while a gold hairline fills with real progress
  * (fonts and the hero photo decoding, capped at 1s), then an aperture iris opens onto the hero,
  * which is server-rendered and already painted underneath. Click, wheel, touch or a key skips it.
  * Repeat visits in the same session never render it (the head script hides it before paint).
@@ -73,7 +73,7 @@ export function Preloader() {
         setMounted(false);
       };
 
-      // Canvas iris: one layer, a hexagonal hole cut with destination-out, brass blade edges.
+      // Canvas iris: one layer, a hexagonal hole cut with destination-out, gold blade edges.
       const iris: Iris = { radius: 0, rotation: 0, edges: 0 };
       let width = 0;
       let height = 0;
@@ -104,7 +104,7 @@ export function Preloader() {
         context2d.fill();
         context2d.globalCompositeOperation = "source-over";
         if (iris.edges > 0) {
-          context2d.strokeStyle = withAlpha(palette.brass, 0.6 * iris.edges);
+          context2d.strokeStyle = withAlpha(palette.gold, 0.6 * iris.edges);
           context2d.lineWidth = 1;
           context2d.beginPath();
           points.forEach(([x1, y1], index) => {

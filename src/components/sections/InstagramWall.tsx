@@ -65,7 +65,7 @@ export function InstagramWall() {
                       </span>
                       <span
                         aria-hidden="true"
-                        className="absolute inset-0 bg-sindoor/18 opacity-0 transition-opacity duration-500 ease-ui group-hover:opacity-100 group-focus-visible:opacity-100"
+                        className="absolute inset-0 bg-ink/24 opacity-0 transition-opacity duration-500 ease-ui group-hover:opacity-100 group-focus-visible:opacity-100"
                       />
                       <span
                         aria-hidden="true"

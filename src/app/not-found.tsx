@@ -22,7 +22,7 @@ export default function NotFound() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-[4/5] w-[min(88vw,30rem)] -translate-x-1/2 -translate-y-1/2 bg-ivory/80 ring-1 ring-brass/45"
+        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-[4/5] w-[min(88vw,30rem)] -translate-x-1/2 -translate-y-1/2 bg-ivory/80 ring-1 ring-gold/45"
       >
         <CropMarks offset="-0.9rem" />
       </div>

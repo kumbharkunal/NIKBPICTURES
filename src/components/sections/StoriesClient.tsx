@@ -19,7 +19,7 @@ const StoryViewer = dynamic(() => import("./StoryViewer"), { ssr: false });
 /**
  * Selected stories.
  * - Large screens with a fine pointer: a pinned horizontal roll; the track moves with scroll
- *   (ease none), each photo drifts inside its frame (containerAnimation), a counter and a brass
+ *   (ease none), each photo drifts inside its frame (containerAnimation), a counter and a gold
  *   line track progress, focus or arrow keys bring a frame into view.
  * - Everything else (touch, small screens, reduced motion, no JS): a native scroll-snap carousel
  *   with a peek of the next card and pagination dots. Never pinned.
@@ -282,7 +282,7 @@ export function StoriesClient() {
                 {active === index ? (
                   <m.span
                     layoutId="story-dot"
-                    className="absolute inset-0 rounded-pill bg-sindoor"
+                    className="absolute inset-0 rounded-pill bg-ink"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 ) : null}
