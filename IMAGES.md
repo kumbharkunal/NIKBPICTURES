@@ -1,6 +1,8 @@
 # IMAGES.md · the twelve photographs
 
-The page uses twelve photo slots. Right now every slot holds a generated placeholder (a paper-coloured frame labelled with its file name and size). This guide explains how to replace them, what each photo needs to show, and how to check the result.
+The page uses twelve photo slots. Right now every slot holds an **AI-generated stand-in**, the same twelve images used for the template demo. They carry no placeholder marker, so `npm run images:check` reports them as `real`: check by eye. They are only for the pitch. They must be replaced with Nik B Pictures' own photographs (with the couples' consent) before launch, and they must never be presented as the studio's weddings.
+
+This guide explains how to replace them, what each photo needs to show, which of the studio's own photographs to ask for, and how to check the result.
 
 ## How replacing works
 
@@ -37,18 +39,36 @@ In `src/content/images.ts`, for that photo:
 |---|---|---|---|
 | `hero-desktop.webp` | 2560 × 1440 | 16:9 | Hero on landscape screens; link preview card; WebGL texture |
 | `hero-mobile.webp` | 1080 × 1920 | 9:16 | Hero on portrait screens |
-| `story-haldi.webp` | 1200 × 1800 | 2:3 | Stories 01; services (Haldi, Mehendi & Sangeet); Instagram tile 1 |
+| `story-haldi.webp` | 1200 × 1800 | 2:3 | Stories 01; services (Haldi, mehendi & sangeet); Instagram tile 1 |
 | `story-monsoon.webp` | 1800 × 1200 | 3:2 | Stories 02; services (Pre-wedding); Instagram tile 3 |
 | `story-antarpat.webp` | 1200 × 1800 | 2:3 | Stories 03; services (Weddings); Instagram tile 4 |
-| `story-mehendi.webp` | 1200 × 1800 | 2:3 | Stories 04; manifesto print; Instagram tile 6 |
-| `story-sangeet.webp` | 1800 × 1200 | 3:2 | Stories 05; services (Wedding films); Instagram tile 7 |
-| `story-nath.webp` | 1200 × 1800 | 2:3 | Stories 06; services (Portraits); Instagram tile 8 |
+| `story-mehendi.webp` | 1200 × 1800 | 2:3 | Stories 04; monogram section print; Instagram tile 6 |
+| `story-sangeet.webp` | 1800 × 1200 | 3:2 | Stories 05; services (Cinematic films); Instagram tile 7 |
+| `story-nath.webp` | 1200 × 1800 | 2:3 | Stories 06; services (Baby shower & maternity); Instagram tile 8 |
 | `behind-the-lens.webp` | 1200 × 1500 | 4:5 | Behind the lens (shown developing from grey to colour) |
-| `detail-rings.webp` | 1200 × 1200 | 1:1 | How we work accent; services (Sakharpuda & ring ceremony); Instagram tile 2 |
-| `detail-paithani.webp` | 1200 × 1200 | 1:1 | Manifesto print; Instagram tile 5 |
+| `detail-rings.webp` | 1200 × 1200 | 1:1 | How we work accent; services (Sakharpuda & engagement); Instagram tile 2 |
+| `detail-paithani.webp` | 1200 × 1200 | 1:1 | Monogram section print; Instagram tile 5 |
 | `cta-silk.webp` | 1920 × 1080 | 16:9 | Booking background, behind a strong paper wash |
 
 Photos are shown as sharp prints: no rounded corners, no borders, no filters. Several slots appear in more than one place, often cropped to a square or 4:5, so keep the subject away from the edges.
+
+## What to ask Nik B Pictures for
+
+The studio's own feed already has the right kind of work for every slot. Ask for the full-resolution files (and the couples' consent) for:
+
+| Slot | Ask for |
+|---|---|
+| `hero-desktop`, `hero-mobile` | One golden-hour couple portrait in traditional dress, in a landscape and a portrait crop, with calm space on the left (landscape) or top and bottom (portrait) for the headline |
+| `story-haldi` | A haldi moment full of laughter |
+| `story-monsoon` | A pre-wedding in the Sahyadris, or a frame from the Warkari-themed pre-wedding at Alandi |
+| `story-antarpat` | The antarpat held up during the mangalashtak |
+| `story-mehendi` | A mehendi detail on silk |
+| `story-sangeet` | A sangeet night with the family dancing |
+| `story-nath` | A bride in nauvari and nath before the ceremony. This slot also illustrates the baby shower and maternity service; once the studio supplies a dohale jevan portrait, give that service its own photo |
+| `behind-the-lens` | Nikhil at work, camera up, at a wedding |
+| `detail-rings` | Engagement rings from a sakharpuda |
+| `detail-paithani` | A Paithani border close-up |
+| `cta-silk` | Any soft silk texture in warm light, no people |
 
 ## What each photo should show
 
@@ -70,7 +90,7 @@ Every note is written so it can be pasted into an image brief or a generation pr
 
 **story-nath.webp**. A bride in a nauvari saree wearing a nath, sitting by window light before the ceremony. Quiet and still; her face in the upper third.
 
-**behind-the-lens.webp**. A photographer kneeling with a camera, framing a candid moment at a wedding. Ideally a real behind-the-scenes photo of the Nik B Pictures team.
+**behind-the-lens.webp**. A photographer kneeling with a camera, framing a candid moment at a wedding. Ideally a real behind-the-scenes photo of Nikhil at work.
 
 **detail-rings.webp**. Two wedding rings resting on the folds of a Paithani silk. Shot from above or at a slight angle, centred.
 
@@ -91,4 +111,4 @@ AI images are fine for a pitch, but they must be replaced with the studio's own 
 
 ## Link previews
 
-The link preview card (`/opengraph-image`, shown by WhatsApp, Instagram, Facebook and X) is built from `hero-desktop.webp` at build time. While the hero is a placeholder, the card is typographic (headline on paper). As soon as a real hero photo is in place, the card shows the photo under an ink wash with the headline. To preview the card with another photo, set `OG_IMAGE_SOURCE` (see `.env.example`).
+The link preview card (`/opengraph-image`, shown by WhatsApp, Instagram, Facebook and X) is built from `hero-desktop.webp` at build time. While the hero is a placeholder, the card is typographic (headline on paper). With a real hero photo in place (as now), the card shows the photo under an ink wash, the NB monogram and the studio name top left, and the headline. To preview the card with another photo, set `OG_IMAGE_SOURCE` (see `.env.example`).

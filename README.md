@@ -124,6 +124,7 @@ tests/                  Playwright specs
 ## Troubleshooting
 
 - **Port 3000 is busy:** another local project may be using it. Run `npx next dev --port 3001`. Tests and Lighthouse use port 3107.
+- **Port 3107 is busy:** another local project built from the same template may be serving there, and Playwright would test that site instead. Run `QA_PORT=3117 npx playwright test` (the config reads `QA_PORT`) and point Lighthouse at the same port.
 - **On a phone the nav never appears and nothing animates:** the page's scripts are not running. With `npm run dev`, open the "Network" address it prints and restart the dev server if the computer's address changed. If scripts fail anyway, the nav and the content still appear after about four seconds, without animation.
 - **A CSS change does not show up:** Turbopack's cache can occasionally serve a stale stylesheet. Stop the server, run `npm run clean`, then start it again.
 - **The font download fails:** check the connection to `api.fontshare.com`, then build again. Nothing is committed, so every machine downloads its own copy once.
