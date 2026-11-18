@@ -1,0 +1,24 @@
+# What `vercel deploy` from this folder must never upload: private notes, local QA output,
+# secrets, and files the build machine fetches or regenerates itself (the Zodiak font is
+# downloaded by scripts/fetch-fonts.mjs on every build, as its licence prefers).
+# Deployments made from the Git repository build only the committed files.
+.env*
+!.env.example
+.vercel
+PITCH_NOTES.md
+brand/qa
+qa-output
+test-results
+playwright-report
+.lighthouse
+node_modules
+.next
+src/fonts/vendor
+images/*.png
+images/*.jpg
+images/*.jpeg
+images/*.PNG
+images/*.JPG
+images/*.JPEG
+*.tsbuildinfo
+next-env.d.ts
