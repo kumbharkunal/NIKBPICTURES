@@ -20,6 +20,7 @@
     "fonts:fetch": "node scripts/fetch-fonts.mjs",
     "images:ensure": "node scripts/ensure-images.mjs",
     "images:check": "node scripts/check-images.mjs",
+    "logo:trace": "node scripts/trace-logo.mjs",
     "grain": "node scripts/make-grain.mjs",
     "preflight": "node scripts/preflight.mjs",
     "test:e2e": "playwright test",
@@ -52,6 +53,7 @@
     "cross-env": "10.1.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.0",
+    "potrace": "2.1.8",
     "schema-dts": "2.1.0",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"

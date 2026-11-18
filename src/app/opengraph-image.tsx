@@ -3,8 +3,10 @@ import { join, resolve } from "node:path";
 import type { CSSProperties } from "react";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
+import { monogramGeometry } from "@/components/brand/monogram-geometry";
 import { photos } from "@/content/images";
 import { hero, seo, studio } from "@/content/site";
+import { monogramDataUri } from "@/lib/monogram";
 import { palette, withAlpha } from "@/lib/tokens";
 
 export const alt = seo.ogAlt;
@@ -146,15 +148,24 @@ export default async function OpenGraphImage() {
         <div
           style={{
             position: "absolute",
-            top: 74,
+            top: 60,
             left: 84,
             display: "flex",
+            alignItems: "center",
+            gap: 18,
             fontFamily: "Zodiak",
             fontWeight: 400,
             fontSize: 34,
             letterSpacing: -0.6,
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={monogramDataUri(text)}
+            width={72}
+            height={Math.round((72 * monogramGeometry.height) / monogramGeometry.width)}
+            alt=""
+          />
           {studio.name}
         </div>
 

@@ -1,3 +1,4 @@
+import { Monogram } from "@/components/brand/Monogram";
 import { RevealImage } from "@/components/ui/RevealImage";
 import { photos } from "@/content/images";
 import { manifesto } from "@/content/site";
@@ -19,9 +20,9 @@ export function Manifesto() {
                 data-ornament
                 role="img"
                 aria-label={manifesto.ornamentLabel}
-                className="block font-display text-[clamp(6.5rem,3.5rem+13vw,19rem)] leading-[1.1] font-light tracking-[-0.04em] text-ink"
+                className="block w-[min(100%,20rem)] text-ink md:w-[min(100%,24rem)] lg:w-[min(100%,27rem)]"
               >
-                NB
+                <Monogram className="block h-auto w-full" />
               </span>
               <span data-ornament-note data-reveal className="mt-4 block space-y-1 font-mono text-caption text-ink-soft">
                 {manifesto.notes.map((note) => (

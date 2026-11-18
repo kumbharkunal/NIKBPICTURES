@@ -5,6 +5,7 @@ import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, type MouseEvent, type ReactNode, type RefObject } from "react";
+import { Lockup } from "@/components/brand/Lockup";
 import { Button } from "@/components/ui/Button";
 import { nav, socials, studio } from "@/content/site";
 import { lockScroll, scrollToSection, unlockScroll } from "@/lib/scroll";
@@ -205,7 +206,7 @@ export function MobileMenu({ toggleRef, socialIcons, ctaIcon, active }: MobileMe
           className="absolute left-1/2 flex h-14 -translate-x-1/2 items-center justify-between pr-1.5 pl-5"
           style={{ top: PILL_TOP_OFFSET, width: "min(calc(100vw - 24px), 520px)" }}
         >
-          <span className="font-display text-[1.375rem] leading-none tracking-[-0.02em]">{studio.name}</span>
+          <Lockup />
           <button
             ref={closeRef}
             type="button"

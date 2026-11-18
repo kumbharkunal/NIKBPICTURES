@@ -4,9 +4,10 @@ import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { Lockup } from "@/components/brand/Lockup";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
-import { nav, studio } from "@/content/site";
+import { nav } from "@/content/site";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { isScrollLocked, scrollToSection, scrollToTop } from "@/lib/scroll";
 import { uiStore, useUI } from "@/lib/ui-store";
@@ -149,9 +150,9 @@ export function Navbar({ ctaIcon, socialIcons }: NavbarProps) {
             prefetch={false}
             onClick={onHomeLink}
             aria-label={nav.homeLabel}
-            className="font-display text-[1.375rem] leading-none tracking-[-0.02em] lg:mr-5"
+            className="inline-flex min-h-11 items-center lg:mr-5"
           >
-            {studio.name}
+            <Lockup />
           </Link>
 
           <ul className="hidden items-center lg:flex">

@@ -584,15 +584,36 @@ html:not(.deva-ready) {
     gap: 1.5rem;
   }
 
-  .preloader-wordmark {
-    font-size: clamp(2.75rem, 1.5rem + 6vw, 7rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.03em;
+  /* The studio's monogram, in ink, then its handle set like the logo's own line. */
+  .preloader-mark {
+    display: block;
+    color: var(--color-ink);
   }
 
+  .preloader-monogram {
+    display: block;
+    width: clamp(8rem, 5rem + 9vw, 12rem);
+    height: auto;
+  }
+
+  .preloader-wordmark {
+    margin-right: -0.32em;
+    font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 1rem);
+    line-height: 1;
+  }
+
+  .js .preloader-mark,
   .js .preloader-wordmark {
     visibility: hidden;
+  }
+
+  /* The brand signature (the logo's handle and tagline): tracked capitals in the sans. The one
+     place capitals are used, because the logo sets its own lines that way. */
+  .brand-caps {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
   }
 
   .preloader-char-mask {
@@ -1764,12 +1785,12 @@ html:not(.deva-ready) {
   }
 
   /* Footer wordmark, fitted to the container (JS sets --fit-size; CSS estimates first paint with
-     the measured width of the wordmark: 5.47em). */
+     the measured width of "Nik B Pictures": 6.21em). */
   .footer-wordmark {
     display: inline-block;
     padding-block: 0.02em 0.16em;
     font-family: var(--font-display);
-    font-size: var(--fit-size, calc((min(100vw, var(--container)) - 2 * var(--gutter)) / 5.47));
+    font-size: var(--fit-size, calc((min(100vw, var(--container)) - 2 * var(--gutter)) / 6.21));
     font-weight: 300;
     line-height: 0.9;
     letter-spacing: -0.045em;

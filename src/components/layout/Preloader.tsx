@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { studio } from "@/content/site";
+import { APERTURE_ORIGIN, Monogram } from "@/components/brand/Monogram";
+import { socials } from "@/content/site";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { QUERIES } from "@/lib/media";
 import { lockScroll, unlockScroll } from "@/lib/scroll";
@@ -10,7 +11,7 @@ import { uiStore } from "@/lib/ui-store";
 
 const STORAGE_KEY = "nikb:intro";
 const READY_CAP_MS = 1000;
-const MIN_LETTERS_MS = 600;
+const MIN_LETTERS_MS = 900;
 const FAILSAFE_MS = 6000;
 
 /** Fired when the iris is 40% open, so the hero load timeline can overlap it. */
@@ -23,8 +24,9 @@ interface Iris {
 }
 
 /**
- * First-visit intro: the wordmark rises from a mask while a gold hairline fills with real progress
- * (fonts and the hero photo decoding, capped at 1s), then an aperture iris opens onto the hero,
+ * First-visit intro: the NB monogram wipes in while the aperture inside the B turns into place and
+ * the handle rises from a mask; a gold hairline fills with real progress (fonts and the hero photo
+ * decoding, capped at 1s). Then a six-bladed iris, like the one in the B, opens onto the hero,
  * which is server-rendered and already painted underneath. Click, wheel, touch or a key skips it.
  * Repeat visits in the same session never render it (the head script hides it before paint).
  */
@@ -45,11 +47,13 @@ export function Preloader() {
         return;
       }
 
+      const mark = root.querySelector<HTMLElement>("[data-preloader-mark]");
+      const aperture = mark?.querySelector<SVGGElement>("[data-aperture]") ?? null;
       const wordmark = root.querySelector<HTMLElement>("[data-preloader-wordmark]");
       const line = root.querySelector<HTMLElement>("[data-preloader-line]");
       const canvas = root.querySelector<HTMLCanvasElement>("canvas");
       const context2d = canvas?.getContext("2d") ?? null;
-      if (!wordmark || !line || !canvas || !context2d) return;
+      if (!mark || !wordmark || !line || !canvas || !context2d) return;
 
       const reduce = window.matchMedia(QUERIES.reduce).matches;
       let finished = false;
@@ -130,7 +134,7 @@ export function Preloader() {
         timeline = gsap.timeline({ onComplete: finish });
         timeline
           .to(line, { scaleX: 1, duration: 0.2, ease: "power2.out" })
-          .to([wordmark, line], { yPercent: -40, autoAlpha: 0, duration: 0.35, ease: "power2.in" }, "+=0.04")
+          .to([mark, wordmark, line], { yPercent: -40, autoAlpha: 0, duration: 0.35, ease: "power2.in" }, "+=0.04")
           .addLabel("iris", "+=0.02")
           .add(() => {
             draw();
@@ -173,10 +177,22 @@ export function Preloader() {
           charsClass: "preloader-char",
           aria: "none",
         });
-        gsap.set(wordmark, { autoAlpha: 1 });
-        gsap.from(split.chars, { yPercent: 110, duration: 0.7, ease: "expo.out", stagger: 0.03 });
+        gsap.set([mark, wordmark], { autoAlpha: 1 });
+        gsap.fromTo(
+          mark,
+          { clipPath: "inset(0% 100% 0% 0%)" },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "cinematic" },
+        );
+        if (aperture) {
+          gsap.fromTo(
+            aperture,
+            { rotation: -90, svgOrigin: APERTURE_ORIGIN },
+            { rotation: 0, svgOrigin: APERTURE_ORIGIN, duration: 1.1, ease: "cinematic" },
+          );
+        }
+        gsap.from(split.chars, { yPercent: 110, duration: 0.7, ease: "expo.out", stagger: 0.025, delay: 0.25 });
       } else {
-        gsap.set(wordmark, { autoAlpha: 1 });
+        gsap.set([mark, wordmark], { autoAlpha: 1 });
       }
 
       const events: (keyof WindowEventMap)[] = ["wheel", "touchstart", "keydown", "pointerdown"];
@@ -203,8 +219,11 @@ export function Preloader() {
     <div ref={rootRef} className="preloader" aria-hidden="true">
       <canvas className="preloader-canvas" />
       <div className="preloader-center">
-        <p data-preloader-wordmark className="preloader-wordmark font-display">
-          {studio.name}
+        <span data-preloader-mark className="preloader-mark">
+          <Monogram className="preloader-monogram" />
+        </span>
+        <p data-preloader-wordmark className="preloader-wordmark brand-caps">
+          {socials.instagram.handle}
         </p>
         <span data-preloader-line className="preloader-line" />
       </div>

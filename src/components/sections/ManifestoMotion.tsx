@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+import { APERTURE_ORIGIN } from "@/components/brand/Monogram";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { QUERIES } from "@/lib/media";
 
 /**
- * - Ornament: a left-to-right clip-path wipe like ink spreading (1.4s cinematic), with vertical
- *   overflow allowed so Devanagari marks above and below are never clipped.
+ * - Ornament (the NB monogram): a left-to-right clip-path wipe like ink spreading (1.4s
+ *   cinematic) while the aperture inside the B turns into place, as if the lens were set.
  * - Paragraph: words develop from half to full opacity, scrubbed by scroll (half keeps even the
  *   undeveloped words at 3.2:1 on paper, above the 3:1 large-text minimum). While split, the visual
  *   copy is hidden from assistive tech and an sr-only twin reads as one sentence.
@@ -40,6 +41,14 @@ export function ManifestoMotion({ children }: { children: ReactNode }) {
             },
           },
         );
+        const aperture = ornament.querySelector<SVGGElement>("[data-aperture]");
+        if (aperture) {
+          gsap.fromTo(
+            aperture,
+            { rotation: -120, svgOrigin: APERTURE_ORIGIN },
+            { rotation: 0, svgOrigin: APERTURE_ORIGIN, duration: 1.8, ease: "cinematic", scrollTrigger: enter },
+          );
+        }
         gsap.fromTo(
           note,
           { autoAlpha: 0, y: 8 },

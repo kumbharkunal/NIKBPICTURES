@@ -10,6 +10,7 @@ import { PageBackground } from "@/components/layout/PageBackground";
 import { ScrollRail } from "@/components/layout/ScrollRail";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { MonogramDefs } from "@/components/brand/MonogramDefs";
 import { BrandDefs, BrandIcon } from "@/components/ui/BrandIcon";
 import { nav, seo, studio } from "@/content/site";
 import { isDemo, isVercel, siteUrl } from "@/lib/env";
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body>
         <BrandDefs />
+        <MonogramDefs />
         <a href="#main" className="skip-link" data-inert-with-menu>
           {nav.skipLink}
         </a>
