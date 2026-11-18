@@ -48,7 +48,7 @@ A single-page Next.js 16 demo for Nik B Pictures (Nikhil Balwadkar Photography),
 - Anything hidden until JavaScript runs needs a CSS failsafe keyed on `.js:not(.gsap-ready)` (reveals, intro, hero clip, nav); `tests/resilience.spec.ts` covers the nav.
 - Test contexts set `screen` equal to the viewport and run Chromium on SwiftShader (see `playwright.config.ts`); without that, a fresh headless page can start landscape for an instant and preload the wrong hero.
 - Keep LF line endings (`.gitattributes` enforces them on commit).
-- When an AI agent runs `next build`, Next 16.4 may stop once with a security upgrade notice ("SecurityFatalError") after compiling; the next run continues. CI and Vercel builds are not stopped by it.
+- When an AI agent runs `next build` and a newer Next.js release fixes a security advisory, the build stops once with an upgrade notice ("SecurityFatalError"); the next run continues, and CI and Vercel builds are never stopped by it. Do not just retry: run `npm audit --omit=dev` and patch. (16.4.0 had a critical advisory in the image optimizer, GHSA-2464-fhr4-w9xw; the project is on 16.4.6, which fixes it.)
 - Headless desktop Chromium can starve `requestAnimationFrame` while the 2560px hero decodes, so desktop screenshots of the intro show its end state. Check the intro at phone width or by reading its state.
 - On Windows, stopping `npm run start` can leave the `next start` child running on its port. Stop it by PID, and only after checking that its command line belongs to this project.
 
