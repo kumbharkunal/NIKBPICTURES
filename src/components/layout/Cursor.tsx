@@ -9,7 +9,8 @@ const DOT_SCALE = 0.11;
 
 /**
  * Cursor follower for fine pointers: a small ink dot that grows into a labelled disc over
- * [data-cursor] targets (view, drag, open). The native cursor stays visible. Loaded lazily.
+ * [data-cursor] targets (view, drag, open), and turns cream over the noir bands. The native cursor
+ * stays visible. Loaded lazily.
  */
 export default function Cursor() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -63,6 +64,7 @@ export default function Cursor() {
         shown = false;
         return;
       }
+      root.dataset.cursorTone = target.closest(".theme-noir") ? "dark" : "light";
       const host = target.closest<HTMLElement>("[data-cursor]");
       const key = host?.dataset.cursor ?? "";
       setLabel(host?.dataset.cursorLabel ?? LABELS[key] ?? "");
@@ -94,9 +96,9 @@ export default function Cursor() {
       <div className="-translate-x-1/2 -translate-y-1/2">
         <div
           ref={discRef}
-          className="grid size-[72px] place-items-center rounded-full bg-ink shadow-[0_0_0_1px_rgb(var(--ivory-rgb)/0.35)]"
+          className="cursor-disc grid size-[72px] place-items-center rounded-full"
         >
-          <span ref={labelRef} className="text-[0.8125rem] font-medium text-ivory" />
+          <span ref={labelRef} className="cursor-label text-[0.8125rem] font-medium" />
         </div>
       </div>
     </div>

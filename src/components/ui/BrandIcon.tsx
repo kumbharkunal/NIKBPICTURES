@@ -10,7 +10,7 @@ import { siFacebook, siInstagram, siPinterest, siThreads, siWhatsapp, siYoutube 
  * - whatsapp: "color" is the green glyph (on light surfaces), "white" is for the green FAB
  * - youtube: the red mark with its play triangle kept white
  * - pinterest: the red disc with its "P" kept white
- * - threads: black on light surfaces; "white" is the ivory mark for dark surfaces
+ * - threads: black on light surfaces; "white" is the white mark for dark surfaces (the noir bands)
  */
 type Brand = "instagram" | "facebook" | "whatsapp" | "youtube" | "pinterest" | "threads";
 
@@ -67,7 +67,7 @@ export function BrandIcon({ brand, variant = "color", size = 20, title, classNam
   if (brand === "threads") {
     return (
       <svg {...svgProps}>
-        <path d={siThreads.path} fill={variant === "white" ? "var(--color-ivory)" : "var(--color-threads)"} />
+        <path d={siThreads.path} fill={variant === "white" ? "var(--color-threads-light)" : "var(--color-threads)"} />
       </svg>
     );
   }

@@ -37,6 +37,7 @@
   --color-yt-red: #ff0000;
   --color-pin-red: #bd081c;
   --color-threads: #000000;
+  --color-threads-light: #ffffff;
 
   --text-hero: clamp(3rem, 0.9rem + 8.6vw, 9rem);
   --text-hero--line-height: 0.92;
@@ -1034,6 +1035,11 @@ html:not(.deva-ready) {
     background-color: rgb(var(--ink-rgb) / 0.55);
   }
 
+  /* Inside the noir band the ink helpers turn cream, so the viewer dims with noir instead. */
+  .theme-noir .story-viewer::backdrop {
+    background-color: rgb(var(--noir-rgb) / 0.7);
+  }
+
   /* Services index rows. Hover and keyboard focus share one designed state. */
   .service-row {
     display: grid;
@@ -1782,6 +1788,65 @@ html:not(.deva-ready) {
   .booking-backdrop {
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 min(12rem, 35%));
     mask-image: linear-gradient(to bottom, transparent, #000 min(12rem, 35%));
+  }
+
+  /* Cinema bands (the Stories film roll and the footer). The tokens swap inside .theme-noir, so
+     every component keeps its classes: ink becomes cream, the paper surfaces become noir, raised
+     surfaces turn dark and the primary button inverts. Gold stays gold; gold-deep lightens to stay
+     text-safe. Measured: cream on noir 16.45, ink-soft 8.91, gold-deep 8.81, gold 6.81. */
+  .theme-noir {
+    --color-paper: #0f0e0b;
+    --color-paper-deep: #1a1713;
+    --color-ivory: #1f1b17;
+    --color-ink: #f2ece4;
+    --color-ink-soft: #b8afa2;
+    --color-ink-lift: #ded5c8;
+    --color-gold-deep: #c9ab78;
+    --color-line: rgb(242 236 228 / 0.14);
+    --color-line-strong: rgb(242 236 228 / 0.5);
+    --paper-rgb: 15 14 11;
+    --paper-deep-rgb: 26 23 19;
+    --ivory-rgb: 31 27 23;
+    --ink-rgb: 242 236 228;
+    --focus-ring: var(--color-ink);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  /* The lights go down before the film roll and come up after it, and down again for the footer:
+     a band of shade between the cream page and each noir band. The one gradient on the page; it
+     carries no text. */
+  .cinema-fade {
+    height: clamp(5rem, 3rem + 10vh, 11rem);
+    pointer-events: none;
+  }
+
+  .cinema-fade--in {
+    background: linear-gradient(to bottom, rgb(var(--noir-rgb) / 0), var(--color-noir));
+  }
+
+  .cinema-fade--out {
+    background: linear-gradient(to top, rgb(var(--noir-rgb) / 0), var(--color-noir));
+  }
+
+  /* The cursor follower turns cream over the noir bands (it lives outside them, so it is told). */
+  .cursor-disc {
+    background-color: var(--color-ink);
+    box-shadow: 0 0 0 1px rgb(var(--ivory-rgb) / 0.35);
+    transition: background-color 250ms var(--ease-ui);
+  }
+
+  .cursor-label {
+    color: var(--color-ivory);
+  }
+
+  [data-cursor-tone="dark"] .cursor-disc {
+    background-color: var(--color-paper);
+    box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.35);
+  }
+
+  [data-cursor-tone="dark"] .cursor-label {
+    color: var(--color-ink);
   }
 
   /* Footer wordmark, fitted to the container (JS sets --fit-size; CSS estimates first paint with
