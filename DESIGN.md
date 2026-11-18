@@ -144,7 +144,7 @@ Zodiak's high-contrast serif sits naturally beside the monogram's own letterform
 Every interactive component has designed default, hover, active, focus-visible and disabled states. Hover applies only on devices that can hover (Tailwind v4 default).
 
 ### The monogram
-- The NB mark is traced from the studio's published logo (`npm run logo:trace`, see README). Paths ship once, in `<MonogramDefs />`; every mark is a `<Monogram />` that references them, so it takes `currentColor`: ink on cream, ivory over photographs and on noir.
+- The NB mark is traced from the studio's published logo (`npm run logo:trace`, see README). Its paths are served once as a cached sprite (`public/brand/nb-monogram-sprite.svg`, 9.6 KB compressed); every mark is a `<Monogram />` that references it, so it takes `currentColor`: ink on cream, ivory over photographs and on noir.
 - The six aperture blades sit in their own group (`[data-aperture]`) and turn about the aperture's centre. They move in exactly two places: the intro (-90° to 0°) and the monogram section (-120° to 0°). Everywhere else the mark is still.
 - **Lockup** (nav pill, mobile menu): the monogram at 26px tall beside "Nik B Pictures" in Zodiak 20px.
 - Minimum size 20px tall; clear space of half the B's width. Gold is used only for the ring (icons, link card). Never stretch the mark or add effects to it.

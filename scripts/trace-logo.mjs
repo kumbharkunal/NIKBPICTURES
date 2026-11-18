@@ -7,7 +7,9 @@
 // tagline under the monogram are not traced: the site sets them as live text.
 //
 // Writes:
-//   src/components/brand/monogram-paths.ts      path data (server side only: defs, icons, link card)
+//   public/brand/nb-monogram-sprite.svg         the paths the page uses: served once, cached, and
+//                                               referenced by every <Monogram /> through <use>
+//   src/components/brand/monogram-paths.ts      path data for the server only (icons, link card)
 //   src/components/brand/monogram-geometry.ts   viewBox and aperture centre (safe in client code)
 //   brand/nb-monogram.svg                       the monogram as a standalone SVG for the studio
 //   brand/qa/trace-compare.png                  source crop beside the traced result (git-ignored)
@@ -25,6 +27,7 @@ const SOURCE = path.join(ROOT, "brand", "source", "nikb-logo-mockup.png");
 const PATHS_OUT = path.join(ROOT, "src", "components", "brand", "monogram-paths.ts");
 const GEOMETRY_OUT = path.join(ROOT, "src", "components", "brand", "monogram-geometry.ts");
 const SVG_OUT = path.join(ROOT, "brand", "nb-monogram.svg");
+const SPRITE_OUT = path.join(ROOT, "public", "brand", "nb-monogram-sprite.svg");
 const QA_OUT = path.join(ROOT, "brand", "qa", "trace-compare.png");
 
 /** The mockup's disc (centre and inner radius) and the line where the handle and tagline start. */
@@ -141,8 +144,8 @@ async function main() {
     PATHS_OUT,
     [
       ...header,
-      " * Server side only (the shared defs, the icons and the link card), so the paths never enter a",
-      " * client bundle.",
+      " * Server side only (the icons and the link card). The page itself uses the same paths from",
+      " * public/brand/nb-monogram-sprite.svg, so they never enter the HTML or a client bundle.",
       " */",
       `import { monogramGeometry } from "./monogram-geometry";`,
       "",
@@ -180,6 +183,15 @@ async function main() {
     `</svg>\n`;
   await mkdir(path.dirname(SVG_OUT), { recursive: true });
   await writeFile(SVG_OUT, standalone);
+
+  // The served sprite: no fill of its own, so each <use> takes the colour of the mark around it.
+  const sprite =
+    `<svg xmlns="http://www.w3.org/2000/svg"><defs>` +
+    `<path id="letters" fill-rule="evenodd" d="${letters}"/>` +
+    `<path id="aperture" fill-rule="evenodd" d="${aperture}"/>` +
+    `</defs></svg>\n`;
+  await mkdir(path.dirname(SPRITE_OUT), { recursive: true });
+  await writeFile(SPRITE_OUT, sprite);
 
   // Side-by-side check at 2x: the source crop (left) and the traced monogram on cream (right).
   const show = { width: crop.width * 2, height: crop.height * 2 };

@@ -66,7 +66,15 @@ Photographs, their alt text, focal points and scrim strengths live in **`src/con
 
 ## The logo
 
-`brand/source/nikb-logo-mockup.png` is the studio's logo as published on its profiles. `npm run logo:trace` traces the NB monogram from it into `src/components/brand/monogram-paths.ts` (and `brand/nb-monogram.svg` for the studio), splitting the aperture inside the B from the letters so it can turn on its own. It also writes a side-by-side check to `brand/qa/trace-compare.png` (git-ignored). When the studio supplies its original vector file, replace the paths file with the real outlines.
+`brand/source/nikb-logo-mockup.png` is the studio's logo as published on its profiles. `npm run logo:trace` traces the NB monogram from it, splitting the aperture inside the B from the letters so it can turn on its own, and writes:
+
+- `public/brand/nb-monogram-sprite.svg`: the paths the page uses, served once and cached;
+- `src/components/brand/monogram-paths.ts`: the same paths for the icons and the link card (server only);
+- `src/components/brand/monogram-geometry.ts`: the frame and the aperture's centre;
+- `brand/nb-monogram.svg`: the monogram as a standalone SVG for the studio;
+- `brand/qa/trace-compare.png` (git-ignored): the source beside the traced result, to check by eye.
+
+When the studio supplies its original vector file, replace the generated paths with the real outlines (keeping the letters and the aperture apart).
 
 ## Environment variables
 
