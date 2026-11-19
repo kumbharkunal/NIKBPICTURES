@@ -10,7 +10,7 @@ Most answers are a one-line change in `src/content/site.ts` (copy and facts) or 
 - [ ] **The name on the site.** The nav, intro and footer say "Nik B Pictures" (the logo's handle); the page title, structured data and copyright say "Nikhil Balwadkar Photography". Confirm both spellings.
 - [ ] **The figures.** "11+ years" and "450+ weddings" come from the studio's own Instagram and Threads bios. Confirm them (`studio.yearsActive`, `studio.weddingsShot`).
 - [ ] **Ratings.** The site can show a rating and link to its listing, but shows none (`trust.show: false`). Decide which listing to cite, if any, then update `trust` and switch it on. Ratings never go into the structured data.
-- [ ] **The monogram reading.** The section under the hero reads the logo as "NB · Nikhil Balwadkar" and "Photo / Cinematic / Stories". Ask whether they are happy with that wording (`manifesto` in `site.ts`).
+- [ ] **The monogram reading.** The section under the hero reads the logo as "NB · Nikhil Balwadkar" and "Photo / Cinematic / Stories", then gives each word of that line one sentence (photos of every ritual, films that keep the music and vows, a day told in order in the album). Ask whether they are happy with that wording (`manifesto` in `site.ts`).
 
 ## Contact details (all hidden until filled in)
 

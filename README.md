@@ -17,7 +17,7 @@ It is a pitch demo. Search engines are kept out (demo mode), every studio fact t
 | Intro | First visit only: the NB monogram draws in while the aperture inside the B turns, then a six-bladed iris opens onto the hero. Click, scroll or a key skips it. |
 | Hero | Art-directed photo (portrait and landscape crops). On large screens, scrolling turns the screen into a framed print. A WebGL "liquid light" follows the cursor. |
 | Marquee | The services in italic, speeding up and reversing with your scroll. |
-| The monogram | The studio's NB mark set large with its reading ("NB · Nikhil Balwadkar", "Photo / Cinematic / Stories"); the paragraph develops word by word. |
+| The monogram | The studio's NB mark set large with its reading ("NB · Nikhil Balwadkar", "Photo / Cinematic / Stories"); the paragraph develops word by word, and the logo's line is read word by word under the first print. |
 | Cinematic stories | The page cuts to black like a cinema screen. A pinned horizontal film roll on desktop, a swipe carousel on phones; any frame opens full screen. |
 | What we capture | An index of six services; hovering shows a floating photo. Each row opens WhatsApp with a message about that service. |
 | Behind the lens | A print that develops as it scrolls into view, with the studio's own figures counting up. |

@@ -228,7 +228,7 @@ Real checkboxes styled as pills, at least 44px tall. Default: a line-strong ring
 |---|---|
 | Hero | full-bleed pin-scrub |
 | Marquee | kinetic strip |
-| The monogram | ornament + scrubbed paragraph + floating prints |
+| The monogram | ornament + scrubbed paragraph + floating prints, with the logo's line (Photo / Cinematic / Stories) as a short numbered list under the first print, so both columns end together |
 | Cinematic stories | horizontal roll (desktop) / snap carousel (mobile), on noir |
 | Services | index list + cursor preview |
 | Behind the lens | 5/7 split (the only split on the page) |

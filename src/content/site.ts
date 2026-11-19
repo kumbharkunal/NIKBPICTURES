@@ -126,6 +126,12 @@ export const manifesto = {
   /** Accessible name of the monogram that heads the section. */
   ornamentLabel: "NB, the Nik B Pictures monogram",
   notes: ["NB · Nikhil Balwadkar", "Photo / Cinematic / Stories"],
+  /** The logo's own line, word by word, set under the prints. */
+  tagline: [
+    { word: "Photo", text: "Candid frames of every ritual, and of the faces around it." },
+    { word: "Cinematic", text: "Films that keep the music, the vows and the pauses in between." },
+    { word: "Stories", text: "Your day told in order, so the album reads the way it felt." },
+  ],
   paragraph: [
     { text: "Some seconds outlast the whole day. The last verse of the " },
     { text: "mangalashtak", term: true },
