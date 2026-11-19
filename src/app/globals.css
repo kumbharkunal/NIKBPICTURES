@@ -1288,9 +1288,10 @@ html:not(.deva-ready) {
   }
 
   /* The page scrollbar on mouse and trackpad devices (ScrollRail): a gold hairline along the right
-     edge, like a film strip's edge, and an ink pill with an ivory ring so it reads over photographs
-     as well as paper. It brightens while the page moves; on hover the pill widens and darkens;
-     dragged, it turns gold. The 16px rail is the hit area. */
+     edge, like a film strip's edge, and an ink pill with a cream ring, so it reads over paper and
+     over photographs; over the noir bands it turns cream with a noir ring (data-tone, set by the
+     rail from the band under the pill). It brightens while the page moves; on hover the pill
+     widens; dragged, it turns gold. The 16px rail is the hit area. */
   .scroll-rail {
     position: fixed;
     top: 0;
@@ -1316,7 +1317,7 @@ html:not(.deva-ready) {
     width: 1px;
     margin-left: -0.5px;
     background-color: var(--color-gold);
-    opacity: 0.35;
+    opacity: 0.55;
     transition: opacity 400ms var(--ease-ui);
   }
 
@@ -1332,22 +1333,28 @@ html:not(.deva-ready) {
   }
 
   .scroll-rail__pill {
-    width: 4px;
+    width: 5px;
     height: 100%;
     border-radius: var(--radius-pill);
-    background-color: var(--color-ink-soft);
-    box-shadow: 0 0 0 1px rgb(var(--ivory-rgb) / 0.75);
-    opacity: 0.7;
+    background-color: var(--color-ink);
+    box-shadow: 0 0 0 1px rgb(var(--paper-rgb) / 0.85);
+    opacity: 0.85;
     transition:
       transform 300ms var(--ease-cinematic),
-      background-color 200ms var(--ease-ui),
+      background-color 250ms var(--ease-ui),
+      box-shadow 250ms var(--ease-ui),
       opacity 300ms var(--ease-ui);
+  }
+
+  .scroll-rail[data-tone="dark"] .scroll-rail__pill {
+    background-color: var(--color-paper);
+    box-shadow: 0 0 0 1px rgb(var(--noir-rgb) / 0.6);
   }
 
   .scroll-rail[data-active] .scroll-rail__track,
   .scroll-rail:hover .scroll-rail__track,
   .scroll-rail[data-dragging] .scroll-rail__track {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   .scroll-rail[data-active] .scroll-rail__pill {
@@ -1357,8 +1364,7 @@ html:not(.deva-ready) {
   .scroll-rail:hover .scroll-rail__pill,
   .scroll-rail[data-dragging] .scroll-rail__pill {
     opacity: 1;
-    transform: scaleX(1.75);
-    background-color: var(--color-ink);
+    transform: scaleX(1.6);
   }
 
   .scroll-rail[data-dragging] .scroll-rail__thumb {
@@ -1811,22 +1817,6 @@ html:not(.deva-ready) {
     --focus-ring: var(--color-ink);
     background-color: var(--color-paper);
     color: var(--color-ink);
-  }
-
-  /* The lights go down before the film roll and come up after it, and down again for the footer:
-     a band of shade between the cream page and each noir band. The one gradient on the page; it
-     carries no text. */
-  .cinema-fade {
-    height: clamp(5rem, 3rem + 10vh, 11rem);
-    pointer-events: none;
-  }
-
-  .cinema-fade--in {
-    background: linear-gradient(to bottom, rgb(var(--noir-rgb) / 0), var(--color-noir));
-  }
-
-  .cinema-fade--out {
-    background: linear-gradient(to top, rgb(var(--noir-rgb) / 0), var(--color-noir));
   }
 
   /* The cursor follower turns cream over the noir bands (it lives outside them, so it is told). */

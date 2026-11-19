@@ -47,6 +47,13 @@ export function scrollToTop() {
 let lockCount = 0;
 let lockedY = 0;
 
+/**
+ * Fired on window once the last overlay lets go of the page. While the page is held the body is
+ * fixed and the document measures one screen tall, so anything measured meanwhile (ScrollTrigger
+ * refreshes during the intro, for example) is measured again on this event.
+ */
+export const SCROLL_UNLOCK_EVENT = "nikb:scroll-unlock";
+
 /** True while an overlay holds the page still (the window then reports a scroll position of 0). */
 export function isScrollLocked(): boolean {
   return lockCount > 0;
@@ -85,4 +92,5 @@ export function unlockScroll() {
   } else {
     window.scrollTo(0, lockedY);
   }
+  window.dispatchEvent(new Event(SCROLL_UNLOCK_EVENT));
 }

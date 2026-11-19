@@ -18,7 +18,7 @@ It is a pitch demo. Search engines are kept out (demo mode), every studio fact t
 | Hero | Art-directed photo (portrait and landscape crops). On large screens, scrolling turns the screen into a framed print. A WebGL "liquid light" follows the cursor. |
 | Marquee | The services in italic, speeding up and reversing with your scroll. |
 | The monogram | The studio's NB mark set large with its reading ("NB · Nikhil Balwadkar", "Photo / Cinematic / Stories"); the paragraph develops word by word. |
-| Cinematic stories | The page dims to black like a cinema. A pinned horizontal film roll on desktop, a swipe carousel on phones; any frame opens full screen. |
+| Cinematic stories | The page cuts to black like a cinema screen. A pinned horizontal film roll on desktop, a swipe carousel on phones; any frame opens full screen. |
 | What we capture | An index of six services; hovering shows a floating photo. Each row opens WhatsApp with a message about that service. |
 | Behind the lens | A print that develops as it scrolls into view, with the studio's own figures counting up. |
 | How we work | Four steps on a gold thread; each numeral fills with ink as the thread reaches it. |
@@ -109,7 +109,7 @@ npm run lh:mobile      # Lighthouse against `npm run start:qa`
 npm run lh:desktop
 ```
 
-The Playwright suite (Chromium) covers the mobile menu, axe WCAG 2.2 A/AA scans (390 and 1440px, reduced motion, menu and date picker open, the 404 page), reduced motion, a clean console through the intro and the story viewer, hero contrast measured on real pixels, the booking form and its WhatsApp text, the review stack, the scroll rail, resilience without scripts and horizontal overflow. `SHOT_WIDTHS=all` sweeps 320, 360, 390, 430, 768, 1024, 1280, 1440 and 1920px.
+The Playwright suite (Chromium) covers the mobile menu, axe WCAG 2.2 A/AA scans (390 and 1440px, reduced motion, menu and date picker open, the 404 page), reduced motion, a clean console through the intro and the story viewer, hero contrast measured on real pixels, the booking form and its WhatsApp text, the review stack, the scroll rail (also on a first visit, after the intro, and over the black bands), resilience without scripts and horizontal overflow. `SHOT_WIDTHS=all` sweeps 320, 360, 390, 430, 768, 1024, 1280, 1440 and 1920px.
 
 ## Project structure
 

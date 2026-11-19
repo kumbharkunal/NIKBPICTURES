@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { contextFor } from "./helpers";
+import { contextFor, waitForScrollToSettle } from "./helpers";
 
 async function scrollToSection(page: Page, id: string) {
   await page.evaluate((target) => {
@@ -190,6 +190,38 @@ test.describe("scroll rail", () => {
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2 + 100, { steps: 5 });
     await page.mouse.up();
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(before + 1000);
+    await context.close();
+  });
+
+  test("after the first-visit intro the rail and the nav still follow the page, and the pill turns cream on black", async ({
+    browser,
+  }) => {
+    const context = await contextFor(browser, 1440, { skipIntro: false });
+    const page = await context.newPage();
+    await page.goto("/", { waitUntil: "networkidle" });
+    // The intro holds the page while the load-time measurements run; once it lets go, both recover.
+    await expect(page.locator(".preloader")).toHaveCount(0, { timeout: 15_000 });
+    const rail = page.locator(".scroll-rail");
+    await expect(rail).not.toHaveAttribute("data-hidden");
+    await expect(rail).toHaveAttribute("data-tone", "light");
+
+    const thumb = page.locator(".scroll-rail__thumb");
+    const top = (await thumb.boundingBox())!.y;
+    await page.mouse.move(700, 500);
+    for (let step = 0; step < 6; step += 1) {
+      await page.mouse.wheel(0, 300);
+      await page.waitForTimeout(120);
+    }
+    await expect.poll(async () => (await thumb.boundingBox())!.y).toBeGreaterThan(top + 50);
+    const navShift = () =>
+      page.evaluate(() => new DOMMatrix(getComputedStyle(document.querySelector("[data-nav-pill]")!).transform).m42);
+    await expect.poll(navShift).toBeLessThan(-40);
+
+    // At the end of the page the pill sits over the noir footer. Let the wheel's smooth scroll
+    // finish first, or it carries the page back towards where the wheel left it.
+    await waitForScrollToSettle(page);
+    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+    await expect(rail).toHaveAttribute("data-tone", "dark");
     await context.close();
   });
 

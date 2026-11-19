@@ -37,7 +37,7 @@ A single-page Next.js 16 demo for Nik B Pictures (Nikhil Balwadkar Photography),
 - `npm run dev` (port 3000), `npm run build`, `npm run build:indexable` (demo mode off, for SEO checks), `npm run start:qa` (port 3107, used by Playwright and Lighthouse)
 - `npm run lint`, `npm run typecheck`, `npm run preflight`, `npm run images:check`, `npm run logo:trace` (re-traces the monogram; check `brand/qa/trace-compare.png`)
 - Other local projects built from the same template may already serve on 3107, and Playwright reuses whatever answers there. Check the port first; if it is taken, run `QA_PORT=3117 npx playwright test` (the config reads `QA_PORT`) and point Lighthouse at that port.
-- `npx playwright test` (Chromium, 31 tests; the QA server on 3107 is reused or started). `SHOT_WIDTHS=all` for the nine-width sweep, `SHOT_WEBKIT=1 ... --project=webkit` for WebKit.
+- `npx playwright test` (Chromium, 32 tests; the QA server on 3107 is reused or started). `SHOT_WIDTHS=all` for the nine-width sweep, `SHOT_WEBKIT=1 ... --project=webkit` for WebKit.
 - `npm run lh:mobile` / `npm run lh:desktop` against `start:qa`. If Lighthouse reports `NO_NAVSTART`, run again or set `CHROME_PATH` to Playwright's Chromium.
 - Port 3000 may already be used by another local project; QA never relies on it.
 
@@ -47,6 +47,7 @@ A single-page Next.js 16 demo for Nik B Pictures (Nikhil Balwadkar Photography),
 - On mouse and trackpad devices the page scrollbar is `ScrollRail` (the native one is hidden under `html.js`); it tracks the scroll through ScrollTrigger and freezes while `isScrollLocked()`.
 - Anything hidden until JavaScript runs needs a CSS failsafe keyed on `.js:not(.gsap-ready)` (reveals, intro, hero clip, nav); `tests/resilience.spec.ts` covers the nav.
 - Test contexts set `screen` equal to the viewport and run Chromium on SwiftShader (see `playwright.config.ts`); without that, a fresh headless page can start landscape for an instant and preload the wrong hero.
+- While `lockScroll()` holds the page the body is fixed and the document measures one screen tall, so ScrollTrigger refreshes run then collapse every `end: "max"`. The first-visit intro holds the page through the load-time refreshes; `unlockScroll()` fires `SCROLL_UNLOCK_EVENT` and `GsapBoot` refreshes again if anything was measured while held. Most tests skip the intro (`contextFor` sets the session flag), so anything that must work on a first visit needs a test with `skipIntro: false`, like the scroll rail's.
 - Keep LF line endings (`.gitattributes` enforces them on commit).
 - When an AI agent runs `next build` and a newer Next.js release fixes a security advisory, the build stops once with an upgrade notice ("SecurityFatalError"); the next run continues, and CI and Vercel builds are never stopped by it. Do not just retry: run `npm audit --omit=dev` and patch. (16.4.0 had a critical advisory in the image optimizer, GHSA-2464-fhr4-w9xw; the project is on 16.4.6, which fixes it.)
 - Headless desktop Chromium can starve `requestAnimationFrame` while the 2560px hero decodes, so desktop screenshots of the intro show its end state. Check the intro at phone width or by reading its state.

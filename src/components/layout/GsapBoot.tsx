@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { QUERIES } from "@/lib/media";
+import { isScrollLocked, SCROLL_UNLOCK_EVENT } from "@/lib/scroll";
 
 /**
  * Marks GSAP as ready (which switches off the CSS reveal failsafe), keeps ScrollTrigger measured
@@ -22,6 +23,22 @@ export function GsapBoot() {
     const refresh = () => ScrollTrigger.refresh();
     void document.fonts?.ready.then(refresh);
     window.addEventListener("load", refresh, { once: true });
+
+    // While an overlay holds the page the body is fixed and the document measures one screen tall,
+    // so anything measured then is wrong ("max" ends collapse to 0: the scroll rail stays hidden and
+    // the nav never hides). The first-visit intro holds the page through the load-time refreshes, so
+    // measure again once it lets go, and after any later hold during which a refresh ran.
+    let measuredWhileHeld = true;
+    const onRefresh = () => {
+      if (isScrollLocked()) measuredWhileHeld = true;
+    };
+    const onUnlock = () => {
+      if (!measuredWhileHeld) return;
+      measuredWhileHeld = false;
+      ScrollTrigger.refresh();
+    };
+    ScrollTrigger.addEventListener("refresh", onRefresh);
+    window.addEventListener(SCROLL_UNLOCK_EVENT, onUnlock);
 
     // Devanagari words live far below the fold; load their font after the page, never before it.
     let idle: number | undefined;
@@ -70,6 +87,8 @@ export function GsapBoot() {
     return () => {
       window.removeEventListener("load", refresh);
       window.removeEventListener("load", afterLoad);
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
+      window.removeEventListener(SCROLL_UNLOCK_EVENT, onUnlock);
       devanagari.disconnect();
       if (idle !== undefined) window.cancelIdleCallback?.(idle);
       mm.revert();

@@ -15,7 +15,7 @@ This is the design specification for the Nik B Pictures homepage (Nikhil Balwadk
 - The logo's tagline is "Photo / Cinematic / Stories", and the page follows it.
 - The hero is the *viewfinder*; scrolling turns it into a *print* ("screen to print").
 - The B in the monogram holds a six-bladed *aperture*: it turns into place in the intro, and a six-sided iris opens onto the hero.
-- The stories are a *film roll*, screened in the dark: the page dims to noir for them and lights up again after.
+- The stories are a *film roll*, screened in the dark: the page cuts to noir for them, on a clean edge like the edge of a screen, and back to cream after.
 - The Instagram wall is a *contact sheet*.
 - Behind the lens *develops* in the tray.
 - Ink carries every action; gold, from the logo's ring, is the only ornament.
@@ -102,7 +102,7 @@ Captions always sit outside photographs, never as pills over them.
 - Components reference tokens only. Tailwind's default palette is cleared (`--color-*: initial`), so a stray `bg-blue-500` cannot compile into anything.
 - Ink is the colour of action: primary buttons, checked chips, the chosen date. Gold never fills a button on cream.
 - No pure white or black surfaces. The exceptions are the glass highlight (`rgb(255 255 255 / .5)`) and the white or black inside the official brand marks.
-- One gradient on the page carries no text: the cinema fades that dim the page into the noir bands and bring it back (`.cinema-fade`). Ink scrims over photographs exist only for legibility, flat at full strength under the copy; their strengths are set per photo in `src/content/images.ts` and proven by `tests/contrast-over-image.spec.ts`.
+- No decorative gradients. The noir bands meet the cream page on a clean, straight edge: a fade between cream and noir passes through muddy greys and reads as a smudge. Ink scrims over photographs exist only for legibility, flat at full strength under the copy; their strengths are set per photo in `src/content/images.ts` and proven by `tests/contrast-over-image.spec.ts`.
 
 ## 3. Typography Rules
 
@@ -191,7 +191,10 @@ Labels roll on hover (two stacked spans, `.label-roll`, 450ms cinematic). With r
 `.link-draw` draws a 1px underline from the left on hover or focus and retracts to the right (420ms cinematic).
 
 ### Scrollbar
-On mouse and trackpad devices the page scrollbar is the site's own (`ScrollRail`): a 1px gold hairline down the right edge with a 4px ink-soft pill (ivory ring); on hover it widens and turns ink; dragged, it turns gold. Touch devices keep their native overlay scrollbars. Inner scroll areas keep a native bar in the site's colours (gold while dragged).
+On mouse and trackpad devices the page scrollbar is the site's own (`ScrollRail`); touch devices keep their native overlay scrollbars. Inner scroll areas keep a native bar in the site's colours (gold while dragged).
+- **Rail:** a 1px gold hairline down the right edge (8px from top and bottom) at 55%, 90% while the page moves or under the pointer. The 16px strip around it is the hit area.
+- **Pill:** 5px wide, ink with a 1px cream ring, 85% at rest and full while scrolling, so it reads on paper and on photographs. While it sits over a noir band (the stories, the footer) it turns cream with a noir ring; the rail works this out from the band under the middle of the pill. On hover it widens (scaleX 1.6); dragged, it turns gold. Its length is the share of the page in view (at least 40px).
+- **Measuring:** the rail and the nav measure the page through ScrollTrigger. Measurements taken while the intro (or an overlay) holds the page are redone when it lets go, so both work on a first visit too.
 
 ### Inputs
 ```css
@@ -235,7 +238,7 @@ Real checkboxes styled as pills, at least 44px tall. Default: a line-strong ring
 | Booking | full-bleed background + form card |
 | Footer | link columns + fitted wordmark, on noir |
 
-**Cinema fades:** a band of shade (`.cinema-fade`, clamp(5rem, 3rem + 10vh, 11rem)) sits before the Stories section, after it, and before the footer, so the page dims into noir and lights up again rather than meeting it at a hard edge.
+**Cinema bands:** the Stories section and the footer are noir (`.theme-noir`) and meet the cream page on clean, straight edges, never a gradient.
 
 **Radii** apply to UI chrome only: pills 999px, mobile sheet 28px, cards 22px / 16px, fields 14px, hero print end state 18px. Photographs are sharp prints: radius 0, no shadows.
 
@@ -309,7 +312,7 @@ No smoothing, scrub, pin, parallax, marquee velocity, cursor or WebGL; SplitText
 ### Don't
 - ❌ Use an em dash or en dash anywhere, including alt text (`npm run preflight` fails the build check).
 - ❌ Use pure white or pure black surfaces.
-- ❌ Add gradients, glows or text shadows beyond the cinema fades.
+- ❌ Add decorative gradients, glows or text shadows, including fades between cream and noir.
 - ❌ Overlay pills, tags or labels on photographs.
 - ❌ Round, shadow or border photographs (prints are sharp).
 - ❌ Animate blur, width, height, top or left.

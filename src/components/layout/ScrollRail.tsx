@@ -13,9 +13,10 @@ const IDLE_MS = 1200;
 
 /**
  * The site's own scrollbar on mouse and trackpad devices (the browser's is hidden from the first
- * paint): a gold hairline along the right edge with an ink pill that follows the scroll. Drag the
- * pill, or press the rail to glide there. Touch devices keep their native overlay scrollbars.
- * Hidden from assistive technology, like a native scrollbar; the keyboard scrolls the page as usual.
+ * paint): a gold hairline along the right edge with an ink pill that follows the scroll, and turns
+ * cream while it sits over a noir band (the stories, the footer). Drag the pill, or press the rail
+ * to glide there. Touch devices keep their native overlay scrollbars. Hidden from assistive
+ * technology, like a native scrollbar; the keyboard scrolls the page as usual.
  */
 export function ScrollRail() {
   const finePointer = useMediaQuery(QUERIES.finePointer);
@@ -36,12 +37,24 @@ function Rail() {
       let track = 0;
       let size = 0;
       let idle = 0;
+      /** Document ranges of the noir bands, where the pill turns cream. */
+      let darkBands: [number, number][] = [];
+      let tone = "light";
 
       const currentScroll = () => getLenis()?.scroll ?? window.scrollY;
       const travel = () => Math.max(1, track - size);
 
       const place = (scroll: number) => {
-        if (limit > 0) setY(travel() * gsap.utils.clamp(0, 1, scroll / limit));
+        if (limit <= 0) return;
+        const y = travel() * gsap.utils.clamp(0, 1, scroll / limit);
+        setY(y);
+        // Which band lies under the middle of the pill, in document coordinates.
+        const middle = scroll + INSET + y + size / 2;
+        const next = darkBands.some(([top, bottom]) => middle >= top && middle < bottom) ? "dark" : "light";
+        if (next !== tone) {
+          tone = next;
+          rail.dataset.tone = next;
+        }
       };
 
       // While an overlay holds the page still the window reads as one screen tall at the top;
@@ -54,6 +67,11 @@ function Rail() {
         size = limit > 0 ? Math.max(MIN_THUMB, (track * viewport) / (limit + viewport)) : track;
         thumb.style.height = `${Math.round(size)}px`;
         rail.toggleAttribute("data-hidden", limit < 2);
+        const scrolled = window.scrollY;
+        darkBands = Array.from(document.querySelectorAll<HTMLElement>(".theme-noir"), (band) => {
+          const box = band.getBoundingClientRect();
+          return [box.top + scrolled, box.bottom + scrolled] as [number, number];
+        });
         place(currentScroll());
       };
 
@@ -125,7 +143,7 @@ function Rail() {
   );
 
   return (
-    <div ref={railRef} aria-hidden="true" className="scroll-rail" data-cursor-hide data-hidden>
+    <div ref={railRef} aria-hidden="true" className="scroll-rail" data-cursor-hide data-hidden data-tone="light">
       <span className="scroll-rail__track" />
       <div ref={thumbRef} className="scroll-rail__thumb">
         <span className="scroll-rail__pill" />
